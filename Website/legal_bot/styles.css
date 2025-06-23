@@ -1,0 +1,12 @@
+.category-slider .slick-prev,
+.category-slider .slick-next {
+  @apply w-8 h-8 bg-white rounded-full shadow-lg before:hidden;
+}
+
+.category-slider .slick-prev { left: -40px }
+.category-slider .slick-next { right: -40px }
+
+.category-slider .slick-prev:hover,
+.category-slider .slick-next:hover {
+  @apply bg-myColor text-white;
+}
