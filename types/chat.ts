@@ -1,8 +1,9 @@
 export interface ChatMessage {
   id: string
   content: string
-  role: 'user' | 'assistant'
+  role: "user" | "assistant"
   timestamp: Date
+  agentType?: string
 }
 
 export interface ChatSession {
@@ -11,4 +12,20 @@ export interface ChatSession {
   createdAt: Date
   updatedAt: Date
   messageCount?: number
+  messages: ChatMessage[]
+  isGeneratingTitle?: boolean
+}
+
+export interface ChatApiRequest {
+  message: string
+  session_id: string
+  user_id: string
+  email: string
+}
+
+export interface ChatApiResponse {
+  session_id: string
+  response: string
+  agent_type: string
+  timestamp: string
 }

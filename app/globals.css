@@ -3,6 +3,78 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Add custom keyframe animations for ThinkingIndicator */
+@keyframes scan {
+  0%,
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+}
+
+@keyframes tilt {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes swing-left {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+@keyframes swing-right {
+  0%,
+  100% {
+    transform: translateY(3px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes document-scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(400%);
+  }
+}
+
+.animate-scan {
+  animation: scan 2s ease-in-out infinite;
+}
+
+.animate-tilt {
+  animation: tilt 1.5s ease-in-out infinite;
+}
+
+.animate-swing-left {
+  animation: swing-left 1.5s ease-in-out infinite;
+}
+
+.animate-swing-right {
+  animation: swing-right 1.5s ease-in-out infinite;
+}
+
+.animate-document-scan {
+  animation: document-scan 2s ease-in-out infinite;
+}
+
 :root {
   --background: oklch(0.99 0 0);
   --foreground: oklch(0.17 0 0);

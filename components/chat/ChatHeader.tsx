@@ -1,7 +1,8 @@
-'use client'
+"use client"
 
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
+import { clearChatData } from "@/lib/chat-storage"
 
 interface ChatHeaderProps {
   onToggleSidebar: () => void
@@ -17,29 +18,29 @@ export function ChatHeader({ onToggleSidebar, isSidebarOpen, onNewChat }: ChatHe
 
   useEffect(() => {
     setMounted(true)
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token")
     if (token) {
-      // Decode JWT token to get user info
       try {
-        const payload = JSON.parse(atob(token.split('.')[1]))
+        const payload = JSON.parse(atob(token.split(".")[1]))
         setUser({
-          name: payload.name || payload.username || payload.sub || 'User',
-          email: payload.email || `${payload.username || payload.sub || 'user'}@example.com`,
-          username: payload.username || payload.sub || 'user'
+          name: payload.name || payload.username || payload.sub || "User",
+          email: payload.email || `${payload.username || payload.sub || "user"}@example.com`,
+          username: payload.username || payload.sub || "user",
         })
       } catch (error) {
-        console.error('Failed to decode token:', error)
+        console.error("Failed to decode token:", error)
       }
     }
   }, [])
 
   const handleLogout = () => {
-    localStorage.removeItem('token')
-    window.location.href = '/'
+    clearChatData()
+    localStorage.removeItem("token")
+    window.location.href = "/"
   }
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
+    setTheme(theme === "light" ? "dark" : "light")
   }
 
   if (!mounted) {
@@ -65,54 +66,55 @@ export function ChatHeader({ onToggleSidebar, isSidebarOpen, onNewChat }: ChatHe
     <header className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
       <div className="px-4 md:px-6 py-3">
         <div className="flex items-center justify-between">
-          {/* Left side - Always show sidebar toggle */}
+          {/* Left side */}
           <div className="flex items-center gap-4">
-            {/* Sidebar Toggle Button - ALWAYS VISIBLE */}
             <button
               onClick={onToggleSidebar}
               className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
               title={isSidebarOpen ? "Hide sidebar" : "Show sidebar"}
             >
               {isSidebarOpen ? (
-                // Close sidebar icon (when sidebar is open)
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                // Open sidebar icon (when sidebar is closed) - HAMBURGER
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
-            
 
-            
-            <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
-              QanoonAI Chat
-            </h1>
+            <h1 className="text-xl font-semibold text-gray-900 dark:text-white">QanoonAI Chat</h1>
           </div>
 
-          {/* Right side - Theme toggle and user menu */}
+          {/* Right side */}
           <div className="flex items-center space-x-4">
-            {/* Theme toggle */}
             <button
               onClick={toggleTheme}
               className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
-              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
             >
-              {theme === 'light' ? (
+              {theme === "light" ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                  />
                 </svg>
               ) : (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
                 </svg>
               )}
             </button>
 
-            {/* User menu */}
             {user ? (
               <div className="relative">
                 <button
@@ -143,9 +145,7 @@ export function ChatHeader({ onToggleSidebar, isSidebarOpen, onNewChat }: ChatHe
                 )}
               </div>
             ) : (
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                Not logged in
-              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Not logged in</div>
             )}
           </div>
         </div>
