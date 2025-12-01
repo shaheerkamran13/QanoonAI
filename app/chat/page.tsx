@@ -19,7 +19,7 @@ import {
   generateProfessionalTitle,
 } from "@/lib/chat-storage"
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://UmarAhmed-34133.portmap.host:34133"
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://UmarAhmed-34133.portmap.host:34133"
 
 function ChatPageContent() {
   const { theme } = useTheme()
