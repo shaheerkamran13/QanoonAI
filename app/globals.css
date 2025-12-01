@@ -55,6 +55,27 @@
   }
 }
 
+/* Added shimmer animation for progress bar */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Added float animation for icons */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
 .animate-scan {
   animation: scan 2s ease-in-out infinite;
 }
@@ -73,6 +94,15 @@
 
 .animate-document-scan {
   animation: document-scan 2s ease-in-out infinite;
+}
+
+/* Added shimmer and float animation classes */
+.animate-shimmer {
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 2s ease-in-out infinite;
 }
 
 :root {

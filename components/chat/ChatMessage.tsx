@@ -51,7 +51,7 @@ export function ChatMessage({ message, isNew = false }: ChatMessageProps) {
           "w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 shadow-lg",
           isUser
             ? "bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-blue-500/25"
-            : "bg-gradient-to-br from-slate-600 to-slate-700 text-white shadow-slate-500/25",
+            : "bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-indigo-500/25",
           isNew && "animate-in zoom-in-50 duration-300",
         )}
       >
@@ -91,7 +91,7 @@ export function ChatMessage({ message, isNew = false }: ChatMessageProps) {
             {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
           </span>
           {!isUser && message.agentType && (
-            <span className="px-2 py-0.5 text-xs font-medium bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full">
+            <span className="px-2.5 py-0.5 text-xs font-medium bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/30 dark:to-blue-900/30 text-indigo-600 dark:text-indigo-400 rounded-full border border-indigo-100 dark:border-indigo-800/50">
               {message.agentType}
             </span>
           )}
@@ -102,7 +102,7 @@ export function ChatMessage({ message, isNew = false }: ChatMessageProps) {
             "px-5 py-4 text-[15px] leading-relaxed break-words whitespace-pre-wrap transition-all duration-300",
             isUser
               ? "bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl rounded-tr-md shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30"
-              : "text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800/50 rounded-2xl rounded-tl-md shadow-sm border border-gray-100 dark:border-gray-700/50",
+              : "text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800/80 rounded-2xl rounded-tl-md shadow-md border border-gray-100 dark:border-gray-700/50 backdrop-blur-sm",
           )}
         >
           {message.content}

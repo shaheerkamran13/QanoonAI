@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8080/",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://UmarAhmed-34133.portmap.host:34133",
   withCredentials: true,
 })
 
