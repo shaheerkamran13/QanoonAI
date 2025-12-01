@@ -40,10 +40,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <Link href="/dashboard/documents" passHref legacyBehavior>
+                <Link href="/chat" passHref legacyBehavior>
                   <SidebarMenuButton asChild>
                     <span className="flex items-center gap-2">
-                      <FileText className="size-4" /> <span>Documents</span>
+                      <FileText className="size-4" /> <span>Chat</span>
                     </span>
                   </SidebarMenuButton>
                 </Link>
